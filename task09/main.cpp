@@ -78,6 +78,8 @@ void step(
     // dEdt +=
     // dEdo +=
     // do not change anything else except for the lines above.
+      dEdt += -gravity;
+      dEdo += vtx2xyz_ini.row(i_vtx).cross(rotation * gravity);
   }
   translation -= learning_rate * dEdt;
   rotation = rotation * Eigen::AngleAxisf(-dEdo.norm()*learning_rate, dEdo.stableNormalized());
